@@ -106,7 +106,7 @@ export default async function create(prjName?: string) {
     }
   }
 
-  await checkVersion(name, version);
+  // await checkVersion(name, version);
 
   // 选择模板
   const templateName = await select({
