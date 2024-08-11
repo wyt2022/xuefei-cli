@@ -1,14 +1,28 @@
 {
-  "name": "cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "xuefei-cli",
+  "version": "0.0.1",
+  "description": "xuefei-cli 脚手架",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "rollup -c rollup.config.js --bundleConfigAsEsm"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Vue3",
+    "TypeScript",
+    "Pinia",
+    "Element-plus",
+    "Vite"
+  ],
+  "author": "xuefei",
+  "bin": {
+    "xuefei": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@inquirer/prompts": "^5.3.8",

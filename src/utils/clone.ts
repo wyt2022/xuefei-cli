@@ -33,13 +33,13 @@ export const clone = async (
 
     // 下面就是一些相关的提示
     console.log();
-    log.info(chalk.blueBright(`==================================`));
-    log.info(chalk.blueBright(`=== 欢迎使用 dawei-cli 脚手架 ===`));
-    log.info(chalk.blueBright(`==================================`));
+    console.log(chalk.blueBright(`==================================`));
+    console.log(chalk.blueBright(`=== 欢迎使用 xuefei-cli 脚手架 ===`));
+    console.log(chalk.blueBright(`==================================`));
     console.log();
 
     log.success(`项目创建成功 ${chalk.blueBright(prjName)}`);
-    log.info(`执行以下命令启动项目：`);
+    log.success(`执行以下命令启动项目：`);
     log.info(`cd ${chalk.blueBright(prjName)}`);
     log.info(`${chalk.yellow("pnpm")} install`);
     log.info(`${chalk.yellow("pnpm")} run dev`);
