@@ -1,8 +1,12 @@
 import { input, select } from "@inquirer/prompts";
 import { clone } from "../utils/clone";
 import path from "path";
+import chalk from "chalk";
 import fs from "fs-extra";
 import log from "../utils/log";
+import { name, version } from "../../package.json";
+import lodash from "lodash";
+import axios, { AxiosResponse } from "axios";
 
 export interface TemplateInfo {
   name: string; // 项目名称
@@ -41,6 +45,37 @@ export const isOverwrite = async (fileName: string) => {
     ]
   });
 };
+
+export const getNpmInfo = async (npmName: string) => {
+  const npmUrl = "https://registry.npmjs.org/" + npmName;
+  let res = {};
+  try {
+    res = await axios.get(npmUrl);
+  } catch (err) {
+    log.error(err as string);
+  }
+  return res;
+};
+
+export const getNpmLatestVersion = async (npmName: string) => {
+  // data['dist-tags'].latest 为最新版本号
+  const { data } = (await getNpmInfo(npmName)) as AxiosResponse;
+  return data["dist-tags"].latest;
+};
+
+export const checkVersion = async (name: string, curVersion: string) => {
+  const latestVersion = await getNpmLatestVersion(name);
+  const need = lodash.gt(latestVersion, curVersion);
+  if (need) {
+    log.info(
+      `检测到 dawei 最新版:${chalk.blueBright(
+        latestVersion
+      )} 当前版本:${chalk.blueBright(curVersion)} ~`
+    );
+    log.info(`可使用 ${chalk.yellow("pnpm")} install dawei-cli@latest 更新 ~`);
+  }
+  return need;
+};
 export default async function create(prjName?: string) {
   // 我们需要将我们的 map 处理成 @inquirer/prompts select 需要的形式
   // 大家也可以封装成一个方法去处理
@@ -70,6 +105,8 @@ export default async function create(prjName?: string) {
       return;
     }
   }
+
+  await checkVersion(name, version);
 
   // 选择模板
   const templateName = await select({
