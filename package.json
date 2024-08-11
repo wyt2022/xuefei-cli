@@ -1,0 +1,35 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c rollup.config.js --bundleConfigAsEsm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/axios": "^0.14.0",
+    "@types/commander": "^2.12.2",
+    "@types/fs-extra": "^11.0.4",
+    "axios": "^1.7.3",
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "log-symbols": "^6.0.0",
+    "progress-estimator": "^0.3.1",
+    "rollup": "^4.20.0",
+    "rollup-plugin-node-externals": "^7.1.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "simple-git": "^3.25.0",
+    "typescript": "^5.5.4"
+  }
+}
